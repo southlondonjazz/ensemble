@@ -10,6 +10,12 @@ class SpotifyConnect(object):
     # this to ask for new tokens when an error comes up
     pass
 
+def get_sp_access_token(secrets_json):
+    with open(secrets_json, 'r') as infile:
+        client_secret, client_id = json.loads(infile.read()).values()
+    access_token = sp_auth(client_id, client_secret)
+    return access_token
+
 def sp_auth(client_id, client_secret):
     """Returns an access token string"""
     headers = {
